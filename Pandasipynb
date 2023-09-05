@@ -1,0 +1,335 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "mount_file_id": "1zwUAfKH6UJUWAO6Mgl4IvpMxjrL4dNM0",
+      "authorship_tag": "ABX9TyPrhRk/SgHotKggLE18yCl/"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **Matrix Calculation**\n"
+      ],
+      "metadata": {
+        "id": "PeCP_iFTf9OU"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "\n",
+        "class gcsv():\n",
+        "  def initiaval(sd):\n",
+        "    sd.at1 = \"Value 1\"\n",
+        "    sd.at2 = \"Value 2\"\n",
+        "    sd.at3 = \"Result\"\n",
+        "    sd.arr = {}\n",
+        "  def rval(sd):\n",
+        "    sd.arr[sd.at1] = list(map(int, input(\"Enter Values For First Attribute\").strip().split()))[:5]\n",
+        "    sd.arr[sd.at2] = list(map(int, input(\"Enter Values For Second Attribute\").strip().split()))[:5]\n",
+        "    sd.arr[sd.at3] = [0,0,0,0,0]\n",
+        "  def cdf(sd):\n",
+        "    sd.df = pd.DataFrame(sd.arr)\n",
+        "    sd.df.to_csv(\"Arrdata.csv\",index=False)\n",
+        "    print(\"File Created Successfully\")\n",
+        "class calc(gcsv):\n",
+        "  def ival(sd):\n",
+        "    sd.initiaval()\n",
+        "    sd.rval()\n",
+        "    sd.cdf()\n",
+        "    sd.ch = int(input(\"Enter Your Choice:\\n 1.Addition \\n 2.Subtraction \\n 3.Multiplication \\n 4.Division\"))\n",
+        "    sd.fl = pd.read_csv(\"Arrdata.csv\")\n",
+        "  def arcrea(sd):\n",
+        "    sd.arr1 = sd.fl['Value 1']\n",
+        "    sd.arr2 = sd.fl['Value 2']\n",
+        "    sd.arr3 = sd.fl['Result']\n",
+        "    sd.arr4 = np.vstack((sd.arr1, sd.arr2))\n",
+        "    sd.arr5 = np.vstack((sd.arr4, sd.arr3))\n",
+        "  def aper(sd):\n",
+        "    if sd.ch == 1:\n",
+        "      print(\"Addition\")\n",
+        "      for i in range(5):\n",
+        "        sd.arr5[2][i] = sd.arr5[0][i] + sd.arr5[1][i]\n",
+        "      print(\"Added values\")\n",
+        "      print(sd.arr5[2])\n",
+        "    elif sd.ch == 2:\n",
+        "      print(\"Subtraction\")\n",
+        "      for i in range(5):\n",
+        "        sd.arr5[2][i] = sd.arr5[0][i] + sd.arr5[1][i]\n",
+        "      print(\"Subtracted values\")\n",
+        "      print(sd.arr5[2])\n",
+        "    elif sd.ch == 3:\n",
+        "      print(\"Multiplication\")\n",
+        "      for i in range(5):\n",
+        "        sd.arr5[2][i] = sd.arr5[0][i] * sd.arr5[1][i]\n",
+        "      print(\"Multiplicated values\")\n",
+        "      print(sd.arr5[2])\n",
+        "    else:\n",
+        "      print(\"Division\")\n",
+        "      for i in range(5):\n",
+        "        sd.arr5[2][i] = sd.arr5[0][i] + sd.arr5[1][i]\n",
+        "      print(\"Divided values\")\n",
+        "      print(sd.arr5[2])\n",
+        "ob = calc()\n",
+        "ob.ival()\n",
+        "ob.arcrea()\n",
+        "ob.aper()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QlQienxyT5PY",
+        "outputId": "fcd6b923-7a3a-4298-bb16-32ac3117f0a6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter Values For First Attribute1 2 3 4 5\n",
+            "Enter Values For Second Attribute1 4 9 16 25\n",
+            "File Created Successfully\n",
+            "Enter Your Choice:\n",
+            " 1.Addition \n",
+            " 2.Subtraction \n",
+            " 3.Multiplication \n",
+            " 4.Division1\n",
+            "Addition\n",
+            "Added values\n",
+            "[ 2  6 12 20 30]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **Pandas file Creation**"
+      ],
+      "metadata": {
+        "id": "Qf6ZJ7kwgXvL"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "class df():\n",
+        "  def ival(sd):\n",
+        "    sd.at1 = \"Emp No\"\n",
+        "    sd.at2 = \"Ename\"\n",
+        "    sd.at3 = \"Job\"\n",
+        "    sd.at4 = \"Mgr\"\n",
+        "    sd.at5 = \"Hire Date\"\n",
+        "    sd.at6 = \"Sal\"\n",
+        "    sd.at7 = \"Comm\"\n",
+        "    sd.at8 = \"Dept No\"\n",
+        "    sd.d = {}\n",
+        "  def rval(sd):\n",
+        "    sd.d[sd.at1] = list(map(int, input(\"Enter Employee Number:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at2] = list(map(str, input(\"Enter Employee Name:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at3] = list(map(str, input(\"Enter Job Name:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at4] = list(map(int, input(\"Enter MGR:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at5] = list(map(str, input(\"Enter Joinig Date:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at6] = list(map(int, input(\"Enter Employee Salary:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at7] = list(map(str, input(\"Enter Employee Comm:\").strip().split()))[:5]\n",
+        "    sd.d[sd.at8] = list(map(int, input(\"Enter Dept Number:\").strip().split()))[:5]\n",
+        "  def fcr(sd):\n",
+        "    sd.d1 = pd.DataFrame(sd.d)\n",
+        "    sd.d1.to_csv(\"File.csv\",index= False)\n",
+        "    print(\"File Created Successfully\")\n",
+        "ob = df()\n",
+        "ob.ival()\n",
+        "ob.rval()\n",
+        "ob.fcr()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Y8Xs3NCqgpR7",
+        "outputId": "90e0ecda-c302-45da-d416-baf331d928e6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter Employee Number:1 2 3 4 5\n",
+            "Enter Employee Name:siddhu yashwanth yogish sathish pranay\n",
+            "Enter Job Name:analyst developer designer reporting testing\n",
+            "Enter MGR:10 20 30 40 50\n",
+            "Enter Joinig Date:200123 200223 200323 20042023 20052023\n",
+            "Enter Employee Salary:10000 20000 30000 40000 50000\n",
+            "Enter Employee Comm:tcs info ibm microsoft google\n",
+            "Enter Dept Number:5 4 3 2 1\n",
+            "File Created Successfully\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **Row wise and Columns wise Sum**"
+      ],
+      "metadata": {
+        "id": "zeaUKBx_223h"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "class df2():\n",
+        "  def ival(sd):\n",
+        "    sd.df = pd.read_csv('Arrdata.csv')\n",
+        "    print(\"File Loaded successfully\")\n",
+        "  def rsum(sd):\n",
+        "    sd.rs = sd.df.sum()\n",
+        "    print(\"Row Sum\")\n",
+        "    print(sd.rs)\n",
+        "  def csum(sd):\n",
+        "    sd.cs = sd.df.sum(axis=1)\n",
+        "    print(\"Column sum\")\n",
+        "    print(sd.cs)\n",
+        "ob = df2()\n",
+        "ob.ival()\n",
+        "ob.rsum()\n",
+        "ob.csum()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xtehPYP_rCSV",
+        "outputId": "97ff89f4-6f3a-44cc-a00f-3796a0044e79"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "File Loaded successfully\n",
+            "Row Sum\n",
+            "Value 1    15\n",
+            "Value 2    55\n",
+            "Result      0\n",
+            "dtype: int64\n",
+            "Column sum\n",
+            "0     2\n",
+            "1     6\n",
+            "2    12\n",
+            "3    20\n",
+            "4    30\n",
+            "dtype: int64\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **Grouopby Functions**"
+      ],
+      "metadata": {
+        "id": "SpwZMrwV2_j4"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class gbyf():\n",
+        "  def ival(sd):\n",
+        "    sd.df = pd.read_csv('test1.csv')\n",
+        "    print(\"File Loaded Succesfully\")\n",
+        "  def gsum(sd):\n",
+        "    sd.gs = sd.df.groupby(\"A\")[[\"C\", \"D\"]].sum()\n",
+        "    print(\"Groupby Sum\")\n",
+        "    print(sd.gs)\n",
+        "  def gmin(sd):\n",
+        "    sd.gmi = sd.df.groupby(\"A\")[[\"C\", \"D\"]].min()\n",
+        "    print(\"Groupby Min\")\n",
+        "    print(sd.gmi)\n",
+        "  def gmean(sd):\n",
+        "    sd.gme = sd.df.groupby(\"A\")[[\"C\", \"D\"]].mean()\n",
+        "    print(\"Groupby Mean\")\n",
+        "    print(sd.gme)\n",
+        "  def gmedian(sd):\n",
+        "    sd.gmed = sd.df.groupby(\"A\")[[\"C\", \"D\"]].median()\n",
+        "    print(\"Groupby Median\")\n",
+        "    print(sd.gmed)\n",
+        "  def gcount(sd):\n",
+        "    sd.gc = sd.df.groupby(\"A\")[[\"C\", \"D\"]].count()\n",
+        "    print(\"Groupby Count\")\n",
+        "    print(sd.gc)\n",
+        "ob = gbyf()\n",
+        "ob.ival()\n",
+        "ob.gsum()\n",
+        "ob.gmin()\n",
+        "ob.gmean()\n",
+        "ob.gmedian()\n",
+        "ob.gcount()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tfHlqha3ulAX",
+        "outputId": "8f472ac0-657e-4845-fd78-56a542d80b26"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "File Loaded Succesfully\n",
+            "Groupby Sum\n",
+            "         C     D\n",
+            "A               \n",
+            "bar   0.28  0.64\n",
+            "foo  92.14  0.58\n",
+            "Groupby Min\n",
+            "        C     D\n",
+            "A              \n",
+            "bar -0.88 -0.46\n",
+            "foo -1.40 -1.12\n",
+            "Groupby Mean\n",
+            "             C         D\n",
+            "A                       \n",
+            "bar   0.093333  0.213333\n",
+            "foo  18.428000  0.116000\n",
+            "Groupby Median\n",
+            "       C     D\n",
+            "A             \n",
+            "bar  0.4  0.17\n",
+            "foo  0.4  0.44\n",
+            "Groupby Count\n",
+            "     C  D\n",
+            "A        \n",
+            "bar  3  3\n",
+            "foo  5  5\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
